@@ -4,20 +4,19 @@
 - name: reload systemd
   systemd:
     daemon_reload: yes
-  when: ansible_distribution == "CentOS" and ansible_distribution_major_version >= "7"
-
-- name: start clearml
-  service: 
-    name: "{{ clearml_service }}"
-    state: started 
-    enabled: yes
 
 - name: start clearml
   service:
-    name: "{{ clearml_service }}"
+    name: "{{ clearml_service }}.service"
+    state: started
+    enabled: yes
+
+- name: stop clearml
+  service:
+    name: "{{ clearml_service }}.service"
     state: stopped
 
-- name: sestart clearml
-  service: 
-    name: "{{ clearml_service }}"
-    state: restarted 
+- name: restart clearml
+  service:
+    name: "{{ clearml_service }}.service"
+    state: restarted
