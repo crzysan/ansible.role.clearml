@@ -1,0 +1,6 @@
+---
+# tasks file for clearml
+
+---
+- include: install.yml
+- include: config.yml
